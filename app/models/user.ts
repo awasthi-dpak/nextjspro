@@ -6,10 +6,10 @@ export interface Message extends Document{
 }
 
 export interface User extends Document{
-    userName:String,
-    email:String,
-    password:String,
-    verifyCode:String,
+    userName:string,
+    email:string,
+    password:string,
+    verifyCode:string,
     verifyCodeExpiry:Date,
     isAcceptingMessage:boolean;
     message:Message[]
