@@ -9,6 +9,32 @@ export async function POST(request:Request){
     try {
 
         const{username,email,password}=await request.json()
+        const existingUserVerifiedByUsername=await UserModel.findOne({
+            username,
+            isVerified:true,
+        })
+
+        if(existingUserVerifiedByUsername){
+            return Response.json({
+                success:false,
+                message:'username is already taken'
+            },{status:400})
+        }
+
+       const existingUserByEmail= await UserModel.findOne({email})
+
+       if(existingUserByEmail){
+        true //todo
+       }else{
+        const hashedPassword=await bcrypt.hash(password,10)
+        const expirytDate=new Date()
+        expirytDate.setHours(expirytDate.getHours()+1)
+
+        new UserModel({
+            
+        })
+    }
+
         
     } catch (error) {
         console.log('Error in signup account',error);
